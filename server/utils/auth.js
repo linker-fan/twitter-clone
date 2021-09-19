@@ -3,8 +3,8 @@ const jwt = require('jsonwebtoken');
 dotenv.config();
 const tokenSecret = process.env.TOKEN_SECRET || "someTokenSecret123#$%";
 
-const generateToken = (username, isAdmin, userID) => {
-    return jwt.sign({username: username, isAdmin: isAdmin, id: userID}, tokenSecret, {expiresIn: '3600s'});
+const generateToken = (username, userID) => {
+    return jwt.sign({username: username, id: userID}, tokenSecret, {expiresIn: '3600s'});
 }
 
 const authMiddleware = (req, res, next) => {
