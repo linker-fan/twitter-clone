@@ -9,7 +9,7 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: password
     volumes:
       -  mongodb:/data/db
-      - ./database:/docker-entrypoint-initdb.d:ro
+      - ./database/schema:/docker-entrypoint-initdb.d:ro
     ports:
       - '27017:27017'
 volumes:
