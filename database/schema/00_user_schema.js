@@ -21,6 +21,14 @@ db.createCollection("users", {
 				updated: {
 					bsonType: "timestamp"
 				},
+				followers: {
+					bsonType: "array",
+					items: {
+						user: {
+							bsonType: "objectId"
+						},
+					},
+				},
 			},
 		},
 	},
