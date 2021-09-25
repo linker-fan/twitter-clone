@@ -28,8 +28,14 @@ router.post('/', auth.authMiddleware, (req, res) => {
 });
 
 // Deletes a tweet
-router.delete('/:id', auth.authMiddleware, async (req, res) => {
-
+router.delete('/:id', auth.authMiddleware, (req, res) => {
+    Tweet.deleteOne({_id: req.params.id, user: req.userID}).then(function(){
+        return res.statusCode(200)
+    }).catch(function(err){
+        return res.status(500).json({
+            "error": err,
+        })
+    });
 });
 
 
