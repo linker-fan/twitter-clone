@@ -3,6 +3,7 @@ const auth = require('../utils/auth.js');
 const Tweet = require('../models/tweet.js');
 const router = express.Router();
 
+// Creates a new tweet
 router.post('/', auth.authMiddleware, (req, res) => {
     const content = req.body;
 
@@ -15,7 +16,7 @@ router.post('/', auth.authMiddleware, (req, res) => {
         likes: [],
     });
 
-    newTweet.save(function(err, t){
+    newTweet.save(function(err){
         if (err){
             return res.status(500),json({
                 "error": err,
@@ -24,6 +25,11 @@ router.post('/', auth.authMiddleware, (req, res) => {
 
         return res.statusCode(201);
     })
+});
+
+// Deletes a tweet
+router.delete('/:id', auth.authMiddleware, async (req, res) => {
+
 });
 
 
