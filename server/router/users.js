@@ -5,7 +5,7 @@ const crypt = require('../utils/crypt.js');
 const router = express.Router();
 const User = require('../models/user.js');
 
-router.post('/register', (req, res) => {
+router.post('/register', async (req, res) => {
     const {username, email, password1, password2 } = req.body;
 
     //validate input data

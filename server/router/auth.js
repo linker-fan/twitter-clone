@@ -4,17 +4,20 @@ const auth = require('../utils/auth.js');
 const router = express.Router();
 const User = require('../models/user.js');
 
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
 s
     const {username, password} = req.body;
     //get users password from the database
     console.log(`[*] Username : ${username} Password: ${password}`);
-    const user = await User.findOne({"username": username})
-    if(user == null){
+
+    const user = await User.findOne({"username": username}).exec().then()
+    if(!user){
         return res.status(404).json({
             "message": "User not found"
         });
     }
+    
+
     let valid = await crypt.checkPassword(user.passwordHash, password)
     if (!valid){
         return res.status(401).json({
