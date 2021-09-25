@@ -18,7 +18,7 @@ router.post('/', auth.authMiddleware, (req, res) => {
 
     newTweet.save(function(err){
         if (err){
-            return res.status(500),json({
+            return res.status(500).json({
                 "error": err,
             });
         }
