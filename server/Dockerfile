@@ -1,10 +1,18 @@
 
-FROM node:alpine
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-COPY package.json .
-COPY package-lock.json .
-RUN npm install
-COPY . .
+FROM node:alpine as base
+
+WORKDIR /src
+COPY package*.json /
 EXPOSE 8080
-CMD ["node", "server.js"]
+
+FROM base as production
+ENV NODE_ENV=production
+RUN npm ci
+COPY . /
+CMD ["node", "bin/www"]
+
+FROM base as dev
+ENV NODE_ENV=development
+RUN npm install -g nodemon && npm install
+COPY . /
+CMD ["nodemon", "bin/www"]
