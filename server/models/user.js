@@ -4,7 +4,7 @@ const schema = mongoose.Schema({
     email: { type: String, unique: true },
     passwordHash: String,
     created: String,
-    updated: String
+    updated: String,
 });
 
 module.exports = mongoose.model("User", schema);

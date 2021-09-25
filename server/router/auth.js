@@ -1,11 +1,11 @@
 const express = require('express');
 const crypt = require('../utils/crypt.js');
+const auth = require('../utils/auth.js');
 const router = express.Router();
 const User = require('../models/user.js');
 
-
 router.post('/login', (req, res) => {
-    console.log("[*] Login route...");
+s
     const {username, password} = req.body;
     //get users password from the database
     console.log(`[*] Username : ${username} Password: ${password}`);
@@ -22,7 +22,14 @@ router.post('/login', (req, res) => {
         });
     }
 
-    token = auth.generateToken(user.username, user.isAdmin, user._id);
+    let token = auth.generateToken(user.username, user.isAdmin, user._id);
+    return res.status(200).json({
+        "token": token,
+    });
+});
+
+router.get('/refresh', auth.authMiddleware, (req, res) => {
+    let token = auth.generateToken(user.username, user.isAdmin, user._id);
     return res.status(200).json({
         "token": token,
     });
