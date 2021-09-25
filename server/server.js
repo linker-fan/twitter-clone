@@ -27,7 +27,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 app.use('/api/auth', require('./router/auth.js'));
 app.use('/api/users', require('./router/users'));
 app.use('/api/tweets', require('./router/tweets.js'));
-app.use('/api/comments', require('./router/comments.js'));
+app.use('/api/comments', require('./router/comments.js')    );
 
 app.listen(SERVER_PORT, () => {
     console.log(`Server running on port :${SERVER_PORT}`);
