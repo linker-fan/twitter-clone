@@ -35,7 +35,7 @@ router.post('/register', (req, res) => {
         if(err){
             return res.statusCode(500);
         }
-        return res.status(201).json(u);
+        return res.statusCode(201);
     });
 });
 

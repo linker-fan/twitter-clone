@@ -4,6 +4,7 @@ const schema = mongoose.Schema({
     content: String,
     created: Date,
     updated: Date,
-    likes: Number,
+    likes: [{type: Schema.Types.ObjectId, ref: "User"}]
 });
+
 module.exports = mongoose.model("Tweet", schema);
