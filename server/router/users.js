@@ -27,6 +27,8 @@ router.post('/register', async (req, res) => {
         username: username,
         email: email,
         passwordHash: passwordHash,
+        confirmed: false,
+        verified: false,
         created: dn,
         modified: dn
     });
