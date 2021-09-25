@@ -34,3 +34,24 @@ router.get('/refresh', auth.authMiddleware, (req, res) => {
         "token": token,
     });
 });
+
+router.get('/me', auth.authMiddleware, (req, res) => {
+    if (req.username == null){
+        return res.status(500).json({
+            "error": "username not set in context",
+        });
+    }
+
+    if(req.userID == null){
+        return res.status(500).json({
+            "error": "userID not set in context",
+        });
+    }
+    
+    return res.status({
+        "id": req.userID,
+        "username": req.username,
+    });
+});
+
+module.exports = router;

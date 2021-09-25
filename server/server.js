@@ -23,6 +23,10 @@ mongoose.connect(`mongodb://${DATABASE_USERNAME}:${DATABASE_PASSWORD}@${DATABASE
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
+
+app.use('/api/auth', require('./router/auth.js'));
+app.use('/api/users', require('./router/users'));
+
 app.listen(SERVER_PORT, () => {
     console.log(`Server running on port :${SERVER_PORT}`);
 });
